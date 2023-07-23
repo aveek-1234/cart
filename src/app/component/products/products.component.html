@@ -1,0 +1,44 @@
+<div class="prod-header">
+    <div class="prod">
+        <a (click)="filterCategory('')">
+            <h5>All product</h5>
+        </a>
+    </div>
+    <div class="prod">
+        <a (click)="filterCategory('electronics')">
+            <img class="img-category" src="https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100">
+            <h5>Electronics</h5>
+        </a>
+    </div>
+    <div class="prod">
+        <a (click)="filterCategory('fashion')">
+            <img  class="img-category" src="https://rukminim2.flixcart.com/fk-p-flap/128/128/image/0d75b34f7d8fbcb3.png?q=100">
+            <h5>Fashion</h5>
+        </a>
+    </div>
+    <div class="prod">
+        <a (click)="filterCategory('jewelery')">
+            <img class="img-category" src="https://tse2.mm.bing.net/th?id=OIP.kRECxj_AWO5vL0Ghs_DE_gHaFj&pid=Api&P=0&h=180">
+            <h5>Ornaments</h5>
+        </a>
+    </div>
+    <div class="slider">
+        <mat-slider min="0" max="1000"  (input)="filterprice()">
+            <input matSliderThumb [(ngModel)]="getValue">
+          </mat-slider>
+        {{getValue}}
+    </div>
+
+</div>
+
+<div class="cart-area">
+    <ng-container *ngFor="let item of cardElementsFiltered | filter: titleMatch : getValue" >
+        <div class="card">
+        <img class="cart-img" src={{item.image}} alt="image">
+        <div class="card-details">
+            <h5>{{item.title}}</h5>
+            <button (click)="addToCart(item)">Add to cart</button>
+        </div>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,16 @@
+<header>
+    <div class="header-comp">
+        <div class="form-group">
+            <input type="text" class="form-control"   (keyup)="search($event)" placeholder="enter products"  [(ngModel)]="getVal">
+            <button>Search</button>
+        
+        </div>
+        <div class="cart-navigate">
+            <button routerLink="cart">go to cart</button>
+            <p>{{totalLength}}</p>
+        </div>
+        <div class="cart-navigate">
+            <button routerLink="sellproducts">sell Products</button>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,21 @@
+<div class="drop-area">
+    <div class="drop-zone" appDragDrop  (fileEventEmitter)="getFile($event)">
+        <div class="text-field">
+            Drag and Drop Or 
+            <a (click)="filedrop.click()">Browse</a>
+            in Your System
+        </div>
+    </div>
+    <input type="file" #filedrop (change)="getFile($event)"  class="file-functionality"> 
+</div>
+
+<div class="file-select"> Files Selected </div>
+
+<div class="file-display-area">
+    <div class="display-file" *ngFor="let file of fileDropped, index as i">
+        <div class="file-present"  (click)="removeFile(i)">
+            <img class="file-image" src={{imgsrc}} alt="image">
+            <span>{{file.name}}</span>
+        </div>
+    </div>
+</div>

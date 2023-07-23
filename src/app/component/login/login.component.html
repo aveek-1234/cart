@@ -1,0 +1,9 @@
+<form class="login-form" [formGroup]="loginform" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="enter email Id" formControlName="email">
+    <input type="password" placeholder="enter password" formControlName="password">
+    <button type="submit"> Submit </button>
+    <ng-container *ngIf="logError">
+         <span> Please Enter Correct Credentials</span>
+    </ng-container>
+</form>
+

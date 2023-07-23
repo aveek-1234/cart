@@ -1,0 +1,28 @@
+.drop-area{
+    display: flex;
+    justify-content: center;
+}
+.drop-zone{
+    margin: 29px;
+    height: 188px;
+    width: 381px;
+    background-color: #eee;
+}
+.file-functionality{
+    display: none;
+}
+.file-display-area{
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.display-file{
+    background-color: #eee;
+    width: 228px;
+    height: 166px;
+    margin: 2px;
+}
+.file-image{
+    height: 143px;
+    width: 228px;
+}

@@ -1,0 +1,23 @@
+<ng-container *ngIf="cartItems.length==0">
+    <h1>Cart is empty</h1>
+</ng-container>
+
+<ng-container *ngIf="cartItems.length!=0">
+    <div class="cart-container" *ngFor="let items of cartItems">
+        <div class="cart-element">
+            <h1>{{items.title}}</h1>
+            <h2>{{items.quantity}}</h2>
+            <button (click)="removeItem(items)">Remove Item</button>
+            <button (click)="addqty(items)">+</button>
+            <button (click)="decreaseqty(items)">-</button>
+        </div>
+    </div>
+    <button (click)="emptycart()">Empty cart</button>
+</ng-container>
+
+<ng-container>
+    <div>
+        <button routerLink="/products"> Continue Shopping</button>
+        
+    </div>
+</ng-container>

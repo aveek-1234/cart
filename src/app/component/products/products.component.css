@@ -1,0 +1,33 @@
+.prod-header{
+    display: flex;
+    margin-left: 40px;
+}
+.prod{
+    margin: 2px;
+}
+.cart-area{
+    /* display: flex; */
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.card{
+    height: 271px;
+    width: 274px;
+    margin: 12px;
+    padding: 4px;
+}
+.card-details{
+    position: absolute;
+    bottom: 7px;
+}
+.cart-img{
+    height: 168px;
+}
+.img-category
+{
+    height: 127px;
+}
+.cart-img:hover{
+    transition: 1s;
+    height: 200px;
+}
