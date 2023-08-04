@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, of } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+//import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApicallService {
-    url:string= environment.apiurl;
+    url:string= "https://fakestoreapi.com/products/";
 
   constructor(private http:HttpClient) {}
   getItem()
