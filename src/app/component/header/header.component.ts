@@ -10,6 +10,7 @@ import { ShowcartService } from 'src/app/service/showcart.service';
 export class HeaderComponent implements OnInit {
   public totalLength: number=0;
   public getVal: string ="";
+  public isOpen:boolean=false;
    constructor(private cart : ShowcartService) {}
   ngOnInit(): void {
     this.cart.getItemList().subscribe((res)=>{
@@ -20,5 +21,15 @@ export class HeaderComponent implements OnInit {
       this.getVal= (event.target as HTMLInputElement).value;
       console.log(this.getVal);
       this.cart.filterString.next(this.getVal);
+  }
+  toggleopen()
+  {
+       this.isOpen=!this.isOpen;
+       console.log(this.isOpen);
+  }
+  removedropdown()
+  {
+    this.isOpen=false;
+    console.log(this.isOpen);
   }
 }

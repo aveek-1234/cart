@@ -1,17 +1,27 @@
 <header>
     <div class="header-comp">
         <div>Ak's storeS</div>
-        <div class="form-group">
-            <input type="text" class="form-control"   (keyup)="search($event)" placeholder="enter products"  [(ngModel)]="getVal">
-            <button>Search</button>
-        
-        </div>
-        <div class="cart-navigate">
-            <button routerLink="cart">go to cart</button>
-            <p>{{totalLength}}</p>
-        </div>
-        <div class="cart-navigate">
-            <button routerLink="sellproducts">sell Products</button>
-        </div>
+            <div class="form-group">
+                <input type="text" class="form-control"   (keyup)="search($event)" placeholder="enter products"  [(ngModel)]="getVal">
+                <button>Search</button>
+                <p>{{totalLength}}</p>
+            </div>
+            <div class="cart-navigate">
+                <button routerLink="cart">go to cart</button>
+                <button routerLink="sellproducts">sell Products</button>
+            </div>        
+            <div class="small-devices">
+               <div class="small-menus" clickOutside (clickOutiside)="removedropdown()">
+                   <div class="menuIcon" (click)="toggleopen()">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5J3SDMqPcovHVRMTiSxdpAKD1FsWaTcYPhLQnQqwpUg&s" alt="hamburg image" >
+                   </div>
+                   <div class="menus"  *ngIf="isOpen">
+                         <ul>
+                            <a class="menuElement" routerLink="cart" > go to cart </a>
+                            <a class="menuElement" routerLink="sellproducts"> sell Products</a>
+                        </ul>
+                    </div>
+               </div>
+            </div>
     </div>
 </header>

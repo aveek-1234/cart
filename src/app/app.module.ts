@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { SellProductsComponent } from './component/sell-products/sell-products.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DragDropDirective } from './directives/drag-drop.directive';
     FilterPipe,
     LoginComponent,
     SellProductsComponent,
-    DragDropDirective
+    DragDropDirective,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,

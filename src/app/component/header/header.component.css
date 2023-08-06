@@ -2,12 +2,54 @@
     background-color: blue;
     height: 50px;
     display: flex;
+    width: 100%;
+    align-items: center;
 }
 .form-group{
     display: flex;
+    width: 60%;
 }
+
 .form-control{
-    width: 600px;
-    margin-left: 400px;
+    width: 69%;
+    margin-left: 2%;
     margin-top: 5px;
+}
+.cart-navigate{
+    display: flex;
+}
+.small-devices{
+    width: 30%;
+    display: none;
+}
+img{
+    float: right;
+    width: 36%;
+    margin: 4%;
+}
+
+@media screen and (max-width: 480px) {
+    .cart-navigate{
+        display: none;
+    }
+    .small-devices{
+        display: block;
+    }
+    .menuElement{
+        display: block;
+    }
+    .menus{
+        background-color: aqua;
+        padding-left: 0%;
+        position: absolute;
+        top: 5%;
+        width: 97px;
+    }
+    ul{
+        padding: 6px;
+    }
+    a{
+        text-decoration: none;
+        color: darkviolet;
+    }
 }
