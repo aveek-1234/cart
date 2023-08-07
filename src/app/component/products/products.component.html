@@ -32,11 +32,12 @@
 </div>
 
 <div class="cart-area">
-    <ng-container *ngFor="let item of cardElementsFiltered | filter: titleMatch : getValue" >
-        <div class="card">
+    <ng-container *ngFor="let item of cardElementsFiltered | filter: titleMatch : getValue" , index as i >
+        <div class="card" >
         <img class="cart-img" src={{item.image}} alt="image">
         <div class="card-details">
             <h5>{{item.title}}</h5>
+            <h5>{{item.price}}</h5>
             <button (click)="addToCart(item)">Add to cart</button>
         </div>
         </div>
