@@ -15,7 +15,10 @@ import { MatSliderModule } from '@angular/material/slider';
 import { SellProductsComponent } from './component/sell-products/sell-products.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
-
+import { StoreModule } from '@ngrx/store';
+import { shopReducer } from './store/reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ShopEffectService } from './store/shop-effect.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,9 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    StoreModule.forRoot({shopping:shopReducer}),
+    EffectsModule.forRoot([ShopEffectService])
   ],
   providers: [],
   bootstrap: [AppComponent]
