@@ -1,7 +1,9 @@
-<form class="login-form" [formGroup]="loginform" (ngSubmit)="onSubmit()">
+<form class="login-form" [formGroup]="loginform" >
     <input type="text" placeholder="enter email Id" formControlName="email">
+    <p class="invalid" *ngIf="isSubmitted && loginform.controls.email.errors?.['required']">Please enter email</p>
+    <p class="invalid" *ngIf="isSubmitted && loginform.controls.email.errors?.['email']">Please enter valid email</p>
     <input type="password" placeholder="enter password" formControlName="password">
-    <button type="submit"> Submit </button>
+    <button type="submit"  (click)="onSubmit()"> Submit </button>
     <ng-container *ngIf="logError">
          <span> Please Enter Your Correct Credentials</span>
     </ng-container>

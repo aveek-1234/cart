@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
+import { Store } from '@ngrx/store';
 import { ShowcartService } from 'src/app/service/showcart.service';
+import { cartState } from 'src/app/store/reducer';
 
 
 @Component({
@@ -11,10 +13,10 @@ export class HeaderComponent implements OnInit {
   public totalLength: number=0;
   public getVal: string ="";
   public isOpen:boolean=false;
-   constructor(private cart : ShowcartService) {}
+   constructor(private cart : ShowcartService, private store: Store<cartState>) {}
   ngOnInit(): void {
-    this.cart.getItemList().subscribe((res)=>{
-      this.totalLength= res.length;
+    this.store.select('cart').subscribe((res)=>{
+      this.totalLength= res.data.length;
     })
   }
   search(event:any){
