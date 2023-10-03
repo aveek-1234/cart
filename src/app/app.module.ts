@@ -18,7 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer, shopReducer } from './store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ShopEffectService } from './store/shop-effect.service';
-import { environment } from 'src/environments/environment.development';
+// import { environment } from 'src/environments/environment.development';
 @NgModule({
   declarations: [
     AppComponent,
