@@ -3,9 +3,11 @@ import { ApicallService } from 'src/app/service/apicall.service';
 import { ShowcartService } from 'src/app/service/showcart.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {Store,select} from '@ngrx/store';
-import { from } from 'rxjs';
+import { Observable, elementAt, from, map, tap } from 'rxjs';
 import { ApiGetData } from 'src/app/store/actions';
-import { stateModel } from 'src/app/store/reducer';
+import { shopstate, stateModel } from 'src/app/store/reducer';
+import { Item } from 'src/app/Models/itemModel';
+import { selectShop } from 'src/app/store/shopSelector';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -14,10 +16,12 @@ import { stateModel } from 'src/app/store/reducer';
 })
 export class ProductsComponent implements OnInit {
   public cardElements: any;
-  public cardElementsFiltered: any;
+  public cardElementsFiltered:any;
+  public cardElementsAddedParams: any[]=[];
   public titleMatch:string="";
   public getValue: number=1000;
-constructor(private apiacll: ApicallService , private showcart: ShowcartService, private store:Store<stateModel>) {}
+  public data$: Observable<any> | undefined;
+constructor(private apiacll: ApicallService , private showcart: ShowcartService, private store:Store<shopstate>) {}
 
 ngOnInit(): void {
   // this.apiacll.getItem().subscribe((res:any)=>{
@@ -31,21 +35,37 @@ ngOnInit(): void {
   //     });
   // })
   this.store.dispatch(ApiGetData());
-  const data$= this.store.select('data');
-  const error$= this.store.select('error');
-  data$.subscribe(res=>console.log(res));
+  this.data$= this.store.select('shop');
+  this.data$.subscribe((res)=>{
+    if(res)
+    {
+      this.cardElements=res.data;
+      this.cardElementsFiltered=res.data;
+      this.cardElements.forEach((element:Item) => {
+          console.log(element)
+          //  this.cardElementsAddedParams.push(Object.assign(element,{quantity:1, Price: element.price}));
+          // if(element.category==="men's clothing" ||  element.category==="women's clothing"){
+          //     element.category= "fashion";
+          //  }
+          })
+      console.log("res",res.data, this.cardElementsAddedParams);
+    }
+  });
   this.showcart.filterString.subscribe((value:string)=>{
     this.titleMatch= value;
   })
-  console.log(this.cardElements);
 }
 addToCart(item: any){
-    this.showcart.addToCart(item);
+  this.showcart.addToCart(item);
 }
 filterCategory(category: string )
 {
   this.cardElementsFiltered= this.cardElements.filter((a:any)=>{
      if(a.category===category || category==="")
+    {
+      return a;
+    }
+    else if (category=='fashion' && (a.category==="men's clothing" ||  a.category==="women's clothing"))
     {
       return a;
     }

@@ -1,79 +1,70 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
+import { cartState } from '../store/reducer';
+import { AddCart, DecreaseQty, IncreaseQty, RemoveCart } from '../store/actions';
+import { Item } from '../Models/itemModel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShowcartService {
+export class ShowcartService  {
   public ItemList:any=[];
-  public prodList= new BehaviorSubject<any>([]);
   public filterString = new BehaviorSubject<string>("");
   private flg: boolean=false;
-  constructor() { }
-  getItemList()
-  {
-    return this.prodList.asObservable()
+  constructor(private store : Store<cartState>) { }
+  getCartElements(): void {
+    this.store.select('cart').subscribe((res:any)=>{
+      this.ItemList= res.data;
+      console.log("ak",this.ItemList);
+    })
   }
-  setItemList(product: any)
+  
+  addToCart(item:Item)
   {
-    this.ItemList.push(...product);
-    this.prodList.next(product);
-  }
-  addToCart(product:any)
-  {
-    this.ItemList.map((a:any)=>{
-      if(a.id===product.id)
+    let flag:boolean=false;
+    this.getCartElements();
+    this.ItemList.map((element:Item)=>{
+      if(element.id===item.id)
       {
-        a.quantity+=1;
-        this.flg=true;
+        this.addQuantity(item.id);
+        flag=true;
       }
     })
-    if(this.flg==false)
+    if(!flag)
     {
-      this.ItemList.push(product);
+      this.store.dispatch(AddCart({item}));
     }
-    console.log(this.ItemList);
-    this.prodList.next(this.ItemList);
-    this.flg=false;
   }
-  removeItem(product:any)
+  removeItem(item:Item)
   {
-    this.ItemList.map((a:any, index:any)=>{
-      if(a.id=== product.id)
-      {
-        this.ItemList.splice(index,1)
-      }
-    })
-    this.prodList.next(this.ItemList);
+    this.store.dispatch(RemoveCart({item}));
   }
   removeAll()
   {
     this.ItemList=[];
-    this.prodList.next(this.ItemList);
   }
-  addQuantity(product : any)
+  addQuantity(id : any)
   {
-    this.ItemList.map((a:any)=>{
-      if(a.id===product.id)
+    this.store.dispatch(IncreaseQty({id}));
+  
+  }
+  decreaseQuantity(id: any)
+  {
+    let flg=0;
+    this.getCartElements();
+    this.ItemList.map((item:Item)=>{
+      if(item.id===id && item.quantity===1)
       {
-        a.quantity+=1;
+        this.store.dispatch(RemoveCart({item}))
+        flg=1;
       }
     })
-    this.prodList.next(this.ItemList);
-  }
-  decreaseQuantity(product: any)
-  {
-    this.ItemList.map((a:any)=>{
-      if(a.id===product.id)
-      {
-        a.quantity-=1;
-        if(a.quantity===0)
-        {
-          this.removeItem(product)
-        }
-      }
-    })
-    this.prodList.next(this.ItemList);
+    if(flg===0)
+    {
+      this.store.dispatch(DecreaseQty({id}))
+    }
+  
   }
 
 }
