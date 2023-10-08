@@ -15,6 +15,7 @@
     width: 274px;
     margin: 12px;
     padding: 4px;
+    cursor: pointer;
 }
 .card-details{
     position: absolute;

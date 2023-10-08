@@ -8,6 +8,7 @@ import { ApiGetData } from 'src/app/store/actions';
 import { shopstate, stateModel } from 'src/app/store/reducer';
 import { Item } from 'src/app/Models/itemModel';
 import { selectShop } from 'src/app/store/shopSelector';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -21,7 +22,7 @@ export class ProductsComponent implements OnInit {
   public titleMatch:string="";
   public getValue: number=1000;
   public data$: Observable<any> | undefined;
-constructor(private apiacll: ApicallService , private showcart: ShowcartService, private store:Store<shopstate>) {}
+constructor(private apiacll: ApicallService , private showcart: ShowcartService, private store:Store<shopstate>, private router: Router) {}
 
 ngOnInit(): void {
   // this.apiacll.getItem().subscribe((res:any)=>{
@@ -70,6 +71,10 @@ filterCategory(category: string )
       return a;
     }
   })
+}
+redirectTo(id:number)
+{
+  this.router.navigateByUrl(`/details/${id}`);
 }
 }
 

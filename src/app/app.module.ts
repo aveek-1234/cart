@@ -18,6 +18,7 @@ import { StoreModule } from '@ngrx/store';
 import { cartReducer, shopReducer } from './store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ShopEffectService } from './store/shop-effect.service';
+import { DetailsComponent } from './component/details/details.component';
 // import { environment } from 'src/environments/environment.development';
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ShopEffectService } from './store/shop-effect.service';
     LoginComponent,
     SellProductsComponent,
     DragDropDirective,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
