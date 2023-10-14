@@ -1,0 +1,10 @@
+<div class="checkout">
+    <div class="items" *ngFor="let items of checkOutItems; let i= index">
+         <div class="index">{{i+1}}</div>
+         <div class="title">{{items.title}}</div>
+         <div class="price">Price:{{items.price}}</div>
+         <div class="quantity">Quantity:{{items.quantity}}</div>
+    </div>
+    <div class="total">Total: {{total}}</div>
+    <button routerLink="/products"> Continue Shopping </button>
+</div>

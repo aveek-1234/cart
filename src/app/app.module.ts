@@ -19,6 +19,7 @@ import { cartReducer, shopReducer } from './store/reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { ShopEffectService } from './store/shop-effect.service';
 import { DetailsComponent } from './component/details/details.component';
+import { CheckoutComponent } from './component/checkout/checkout.component';
 // import { environment } from 'src/environments/environment.development';
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DetailsComponent } from './component/details/details.component';
     SellProductsComponent,
     DragDropDirective,
     ClickOutsideDirective,
-    DetailsComponent
+    DetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
